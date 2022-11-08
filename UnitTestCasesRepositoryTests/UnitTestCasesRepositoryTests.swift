@@ -31,12 +31,27 @@ final class UnitTestCasesRepositoryTests: XCTestCase {
         print("Hello this is testExample")
     }
 
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
+    func testCheckURLFunctionality() {
+        
+        let expectation = XCTestExpectation(description: "Expectation for network manager url")
+        
+        NetworkManager.shared.getAPIData() {
+            result in
+            
+            XCTAssertEqual(result[0].character, "Mario", "Value did not match")
+            
+            XCTAssertNotNil(result[0].release.au)
+            
+            //MARK: -If we dont call this below function, this test method will always fail. Becausee calling fulfill stops test method to wait and as a result wait() function will not raise error.
+            expectation.fulfill()
+            
+        }
+        
+        //MARK: - Not calling wait() method makes this test method pass all the time. Because it will never execute code block present in the closure of getAPIData()(It's a callback closure). And no statements of that closure block also executed. It will jujst like calling test method with no assertion statement in it.
+        
+        wait(for: [expectation], timeout: 10)
+    
+    }
 
     override class func tearDown() {
         print(#function)
