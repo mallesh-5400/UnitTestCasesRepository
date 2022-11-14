@@ -21,57 +21,64 @@ class CustomTableViewCell: UITableViewCell {
     lazy var title:UILabel = {
        let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = 0
+        title.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        title.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        title.numberOfLines = 1
         return title
     }()
     
     lazy var subTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        //label.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        //label.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        label.lineBreakMode = .byWordWrapping
+        label.contentCompressionResistancePriority(for: .horizontal)
         label.numberOfLines = 0
         return label
     }()
     
-    lazy var continueButton: UIButton = {
+    lazy var hideAndUnHideButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         button.backgroundColor = .systemBlue
        // button.titleLabel?.numberOfLines = 0
-        button.setTitle("Continue", for: .normal)
+        button.setTitle("Hide", for: .normal)
         button.isHidden = true
         return button
     }()
     
-    lazy var mainStackView2: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [imagVW, innerStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = UIStackView.Alignment.center
-        stackView.distribution = UIStackView.Distribution.fill
-        stackView.axis = NSLayoutConstraint.Axis.horizontal
-        stackView.spacing = 5
-        return stackView
-    }()
+//    lazy var mainStackView: UIStackView = {
+//       let stackView = UIStackView(arrangedSubviews: [imagVW, innerStackView])
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.alignment = UIStackView.Alignment.center
+//        stackView.distribution = UIStackView.Distribution.fill
+//        stackView.axis = NSLayoutConstraint.Axis.horizontal
+//        stackView.spacing = 5
+//        return stackView
+//    }()
     
-    lazy var innerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [title, subTitle])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = UIStackView.Alignment.fill
-        stackView.distribution = UIStackView.Distribution.fill
-        stackView.axis = NSLayoutConstraint.Axis.vertical
-        return stackView
-    }()
+//    lazy var innerStackView: UIStackView = {
+//       // let stackView = UIStackView(arrangedSubviews: [title, subTitle, hideAndUnHideButton])
+//        let stackView = UIStackView(arrangedSubviews: [title, subTitle])
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.alignment = UIStackView.Alignment.fill
+//        stackView.distribution = UIStackView.Distribution.fillEqually
+//        stackView.axis = NSLayoutConstraint.Axis.vertical
+//        return stackView
+//    }()
     
     
     
-    private var buttonState: ContinueButtonState = .hidden
+    private var buttonState: hideAndUnHideButtonState = .hidden
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addViews()
         setUpNewUI()
-        
+        setUpTitleAndSubtitleWithImage()
         //let gesture = UITapGestureRecognizer(target: self, action: #selector(buttonTap))
        // addGestureRecognizer(gesture)
     }
@@ -80,40 +87,72 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func addViews() {
-        addSubview(mainStackView2)
+        //addSubview(mainStackView)
+        addSubview(hideAndUnHideButton)
     }
     
     func setUpNewUI() {
-        mainStackView2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        mainStackView2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        mainStackView2.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        mainStackView2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//        mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+//        mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+//        mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        //mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
+        
         hideButton()
     }
     
+    func setUpTitleAndSubtitleWithImage() {
+        addSubview(imagVW)
+        addSubview(title)
+        addSubview(subTitle)
+        
+        
+        NSLayoutConstraint.activate([
+            imagVW.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            imagVW.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            
+            title.leadingAnchor.constraint(equalTo: imagVW.trailingAnchor, constant: 10),
+            title.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            title.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            
+            subTitle.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            subTitle.trailingAnchor.constraint(equalTo: title.trailingAnchor),
+            subTitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            //subTitle.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10)
+        ])
+        
+        
+    }
+    
     func unhideButton() {
-        continueButton.isHidden = false
-        buttonState = .unhidden
+        hideAndUnHideButton.isHidden = false
+      //  innerStackView.setCustomSpacing(40, after: subTitle)
+        hideAndUnHideButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        hideAndUnHideButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 20).isActive = true
+        //buttonState = .unhidden
     }
     
     func hideButton() {
-        continueButton.isHidden = true
-        buttonState = .hidden
+        hideAndUnHideButton.isHidden = true
+       // innerStackView.setCustomSpacing(0, after: subTitle)
+        hideAndUnHideButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = false
+        hideAndUnHideButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 20).isActive = false
+        //buttonState = .hidden
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-      //MARK: - If dont write below line also this function will behave we are expecting
-      //  super.setSelected(selected, animated: animated)
-        
-        if continueButton.isHidden, selected {
-            unhideButton()
-        } else {
-            hideButton()
-        }
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//      //MARK: - If dont write below line also this function will behave we are expecting
+//        super.setSelected(selected, animated: animated)
+//
+//        if hideAndUnHideButton.isHidden, selected {
+//            unhideButton()
+//        } else {
+//            hideButton()
+//        }
+//    }
 }
 
-enum ContinueButtonState {
+enum hideAndUnHideButtonState {
     case hidden
     case unhidden
 }

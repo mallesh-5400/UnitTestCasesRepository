@@ -25,6 +25,7 @@
 		A8355EDA29128F8F00D9A6F3 /* CustomTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8355ED929128F8F00D9A6F3 /* CustomTableViewCell2.swift */; };
 		A8355EDC29128FF000D9A6F3 /* PhoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8355EDB29128FF000D9A6F3 /* PhoneModel.swift */; };
 		A8355EDD29128FF000D9A6F3 /* PhoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8355EDB29128FF000D9A6F3 /* PhoneModel.swift */; };
+		A847FD7B291E5427000A232B /* SearchViewMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847FD7A291E5427000A232B /* SearchViewMainController.swift */; };
 		A8811EE12912D81A00642359 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8811EE02912D81A00642359 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		A8355ED729128F6C00D9A6F3 /* AmiiboModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AmiiboModel.swift; path = "../../../Downloads/Xcode-Practices/AmiiboModel.swift"; sourceTree = "<group>"; };
 		A8355ED929128F8F00D9A6F3 /* CustomTableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell2.swift; path = "../../../Downloads/Xcode-Practicess/CustomTableViewCell2.swift"; sourceTree = "<group>"; };
 		A8355EDB29128FF000D9A6F3 /* PhoneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneModel.swift; path = "../../../Downloads/Xcode-Practicess/Xcode-Practicess/Models/PhoneModel.swift"; sourceTree = "<group>"; };
+		A847FD7A291E5427000A232B /* SearchViewMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewMainController.swift; sourceTree = "<group>"; };
 		A8811EE02912D81A00642359 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 		A8355E8929128E2200D9A6F3 = {
 			isa = PBXGroup;
 			children = (
+				A847FD79291E53B4000A232B /* UISearchVCAndUISearchBar */,
 				A8355E9429128E2200D9A6F3 /* UnitTestCasesRepository */,
 				A8355EAB29128E2300D9A6F3 /* UnitTestCasesRepositoryTests */,
 				A8355EB529128E2300D9A6F3 /* UnitTestCasesRepositoryUITests */,
@@ -153,6 +156,14 @@
 				A8355EB829128E2300D9A6F3 /* UnitTestCasesRepositoryUITestsLaunchTests.swift */,
 			);
 			path = UnitTestCasesRepositoryUITests;
+			sourceTree = "<group>";
+		};
+		A847FD79291E53B4000A232B /* UISearchVCAndUISearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				A847FD7A291E5427000A232B /* SearchViewMainController.swift */,
+			);
+			path = UISearchVCAndUISearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				A8355ED129128E9D00D9A6F3 /* EndPoints.swift in Sources */,
 				A8355ECF29128E9D00D9A6F3 /* String+Extension.swift in Sources */,
 				A8355ED029128E9D00D9A6F3 /* ThirdViewController.swift in Sources */,
+				A847FD7B291E5427000A232B /* SearchViewMainController.swift in Sources */,
 				A8355ED429128E9D00D9A6F3 /* SecondViewController.swift in Sources */,
 				A8355ECE29128E9D00D9A6F3 /* FirstViewController.swift in Sources */,
 			);
